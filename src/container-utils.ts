@@ -1,8 +1,14 @@
-export const execute = async (
-  executable: string,
-  args: string[],
-  env?: Record<string, string | undefined>,
-) => {
+export type DBCredentials = {
+  dbName: string;
+  username: string;
+  password: string;
+};
+
+export const execContainer = async (args: string[], env?: Record<string, string | undefined>) => {
+  const executable = Bun.which('container');
+
+  if (!executable) throw new Error("Apple's 'container' CLI is not installed");
+
   const process = Bun.spawn([executable, ...args], {
     env,
     stdin: 'ignore',
@@ -19,14 +25,10 @@ export const execute = async (
   return { exitCode, stdout, stderr };
 };
 
-export const execMongoShellScript = (
-  executable: string,
-  dbName: string,
-  username: string,
-  password: string,
-  script: string,
-) =>
-  execute(executable, [
+export const execMongoShellScript = (dbCreds: DBCredentials, script: string) => {
+  const { dbName, username, password } = dbCreds;
+
+  return execContainer([
     'exec',
     dbName,
     'mongosh',
@@ -40,3 +42,4 @@ export const execMongoShellScript = (
     '--eval',
     script,
   ]);
+};
