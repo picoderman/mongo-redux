@@ -1,7 +1,8 @@
-export type DBCredentials = {
+export type DBConfig = {
   dbName: string;
   username: string;
   password: string;
+  port: number;
 };
 
 export const execContainer = async (args: string[], env?: Record<string, string | undefined>) => {
@@ -25,8 +26,8 @@ export const execContainer = async (args: string[], env?: Record<string, string 
   return { exitCode, stdout, stderr };
 };
 
-export const execMongoShellScript = (dbCreds: DBCredentials, script: string) => {
-  const { dbName, username, password } = dbCreds;
+export const execMongoShellScript = (dbConfig: DBConfig, script: string) => {
+  const { dbName, username, password } = dbConfig;
 
   return execContainer([
     'exec',
