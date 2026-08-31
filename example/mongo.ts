@@ -1,10 +1,17 @@
 import { MongoClient } from 'mongodb';
+import { initDBContainer } from 'mongo-redux';
 
-const client = new MongoClient(
-  "mongodb://root:example@localhost:57757/?authSource=admin&replicaSet=rs0&directConnection=true",
-);
+const dbConfig = {
+  dbName: 'test',
+  username: 'root',
+  password: 'example',
+  port: 57757,
+} as const;
 
 export const getDb = async () => {
+  const connectionString = await initDBContainer(dbConfig);
+  const client = new MongoClient(connectionString);
+
   await client.connect();
-  return client.db("test");
+  return client.db(dbConfig.dbName);
 };
