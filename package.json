@@ -10,6 +10,10 @@
   },
   "type": "module",
   "private": true,
+  "scripts": {
+    "test-cleanup": "container ls -q | grep '^mongo-redux-test-' | xargs container stop; container ls -a -q | grep '^mongo-redux-test-' | xargs container rm",
+    "test": "bun run test-cleanup; bun test --parallel"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
