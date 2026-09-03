@@ -97,10 +97,10 @@ const findContainer = async (name: string) => {
 };
 
 export const getIsContainerRunning = async (name: string) =>
-  (await findContainer(name))?.status === 'running';
+  (await findContainer(name))?.status?.state === 'running';
 
 export const getIsContainerStopped = async (name: string) =>
-  (await findContainer(name))?.status === 'stopped';
+  (await findContainer(name))?.status?.state === 'stopped';
 
 export const startContainer = async (name: string) => {
   const result = await execContainer(['start', name]);

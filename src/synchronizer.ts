@@ -14,7 +14,12 @@ const getEventWriteId = <State>(change: ChangeStreamDocument<MongoReduxDocument<
   if (change.operationType === 'update') {
     const updatedFields = change.updateDescription.updatedFields as Document | undefined;
     const writeId = updatedFields?.['_sync.writeId'];
-    return typeof writeId === 'string' ? writeId : undefined;
+
+    if (typeof writeId === 'string') return writeId;
+
+    const nestedWriteId = updatedFields?._sync?.writeId;
+
+    return typeof nestedWriteId === 'string' ? nestedWriteId : undefined;
   }
 
   if (change.operationType === 'insert' || change.operationType === 'replace') {
