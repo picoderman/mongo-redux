@@ -21,7 +21,6 @@ const pollMongo = async (
   let lastResult: Awaited<ReturnType<typeof execContainer>> | undefined;
 
   for (let attempt = 0; attempt < pollAttempts; attempt += 1) {
-    console.log(`${description} (attempt ${attempt + 1}/${pollAttempts})`);
     lastResult = await execMongoShellScript(dbConfig, script);
 
     if (lastResult.exitCode === 0) return;
