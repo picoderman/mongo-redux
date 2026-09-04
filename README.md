@@ -2,10 +2,25 @@
 
 Synchronize one Redux root state with one MongoDB document.
 
+### Installation
+
+```sh
+bun add @tt-tt/mongo-redux
+```
+
+This package runs directly from its TypeScript source, so use it with Bun.
+
+Requirements:
+
+- TypeScript 7+
+- Redux Toolkit 2+
+- MongoDB 7+
+- Redux 5+
+
 ### Usage
 
 ```ts
-import { createMongoReduxStore } from 'mongo-redux';
+import { createMongoReduxStore } from '@tt-tt/mongo-redux';
 
 const { store, sync } = await createMongoReduxStore({
   mongo: {
@@ -50,6 +65,10 @@ the complete Redux root state. `sync.status` is `active`, `error`, or `stopped`,
 
 MongoDB must run as a replica set or sharded cluster because incoming synchronization uses
 a change stream. Version 1 supports one active Redux store per MongoDB document.
+
+`initDBContainer` requires Bun and Apple's `container` CLI with its service running. It
+starts a local MongoDB container configured as a single-node replica set and returns its
+connection string.
 
 ### Idea
 

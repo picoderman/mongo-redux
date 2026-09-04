@@ -1,5 +1,7 @@
 {
-  "name": "mongo-redux",
+  "name": "@tt-tt/mongo-redux",
+  "version": "0.1.0",
+  "description": "Synchronize one Redux root state with one MongoDB document.",
   "module": "./src/root.ts",
   "types": "./src/root.ts",
   "exports": {
@@ -9,7 +11,30 @@
     }
   },
   "type": "module",
-  "private": true,
+  "files": [
+    "src",
+    "example"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Ilya Pavlov",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/picoderman/mongo-redux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/picoderman/mongo-redux/issues"
+  },
+  "homepage": "https://github.com/picoderman/mongo-redux#readme",
+  "keywords": [
+    "mongodb",
+    "redux",
+    "synchronization",
+    "state-management",
+    "bun"
+  ],
   "scripts": {
     "test-cleanup": "container ls -q | grep '^mongo-redux-test-' | xargs container stop; container ls -a -q | grep '^mongo-redux-test-' | xargs container rm",
     "test": "bun run test-cleanup; bun test --parallel"

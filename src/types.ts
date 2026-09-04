@@ -2,11 +2,11 @@ import {
   Tuple,
   type ConfigureStoreOptions,
   type EnhancedStore,
+  type ThunkMiddleware,
   type TSHelpersExtractDispatchExtensions,
 } from '@reduxjs/toolkit';
 import type { Collection } from 'mongodb';
 import type { Action, Middleware, StoreEnhancer, UnknownAction } from 'redux';
-import type { ThunkMiddleware } from 'redux-thunk';
 
 export type Middlewares<State> = ReadonlyArray<Middleware<{}, State>>;
 export type Enhancers = ReadonlyArray<StoreEnhancer>;

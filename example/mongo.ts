@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-import { initDBContainer } from 'mongo-redux';
+import { initDBContainer } from '@tt-tt/mongo-redux';
 
 const dbConfig = {
   dbName: 'test',

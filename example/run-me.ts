@@ -1,4 +1,4 @@
-import { createMongoReduxStore } from "mongo-redux";
+import { createMongoReduxStore } from "@tt-tt/mongo-redux";
 
 import { slice } from "./slice";
 import { getDb } from "./mongo";

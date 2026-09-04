@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "mongo-redux",
+      "name": "@tt-tt/mongo-redux",
       "devDependencies": {
         "@types/bun": "latest",
       },
